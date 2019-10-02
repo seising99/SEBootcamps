@@ -39,6 +39,17 @@ describe('Listing Schema Unit Tests', function() {
       prematurely, we can increase the timeout setting with the method this.timeout()
      */
     this.timeout(10000);
+	
+	 it('saves properly to the database', function(done){
+      new Listing({
+        name: listing.name, 
+        code: listing.code
+      }).save(function(err, listing){
+        should.not.exist(err);
+        id = listing._id;
+        done();
+      });
+    });
 
     it('saves properly when code and name provided', function(done){
       new Listing({
